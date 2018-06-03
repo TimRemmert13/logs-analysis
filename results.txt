@@ -1,0 +1,13 @@
+Query 1: What are the most popular three articles of all time?
+('Candidate is jerk, alleges rival', 338647L)
+('Bears love berries, alleges bear', 253801L)
+('Bad things gone, say good people', 170098L)
+
+Query 2: Who are the most popular article authors of all time?
+('Ursula La Multa', 507594L)
+('Rudolf von Treppenwitz', 423457L)
+('Anonymous Contributor', 170098L)
+
+Query 3: On which days did more than 1% of requests lead to errors?
+('July      17 2016', '2.3%')
+
