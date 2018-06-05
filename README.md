@@ -25,7 +25,7 @@
 
 3. inside the vagrant directory clone this respository or place the opened downloaded zip file of this repository.
 
-4. Open the newsdata.zip file and move the newdata.sql file to the parent vagrant directory. You can achieve this in Mac OS or Linux with the command ```mv newsdata.sql ...```
+4. Open the newsdata.zip file and move the newdata.sql file to the parent vagrant directory. You can achieve this in Mac OS or Linux with the command ```mv newsdata.sql ..```
 
 5. ```cd``` to the vagrant directory and run the command ```vagrant up```. This will download the Linux operating System and install it.
 
