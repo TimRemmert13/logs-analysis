@@ -33,7 +33,7 @@
 
 7. To load the data run the command ```psql -d news -f newsdata.sql```
 
-8. To execute the program run the change directories to the log-analysis directory and run the command ```python report.py```
+8. To execute the program change directories to the log-analysis directory and run the command ```python report.py```
 
 9. You did it! the results of the analysis report will be in the text file names results.txt in the same directory.
 
