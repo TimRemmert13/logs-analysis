@@ -50,5 +50,3 @@ FROM log
 GROUP BY DATE(time);
 ```
 
-## Additional Notes
-* You do not need to run the program locally to see the results of the report. The results are placed in the results.txt file in the respository for your viewing convinence. 
