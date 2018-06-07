@@ -27,7 +27,7 @@ def connect(database):
         sys.exit(1)
 
 
-def print_results(results, w_or_a, query):
+def print_results(results, w_or_a, query, last):
     '''Function to pretty print query results and the original query to
     a text file called results.txt
 
@@ -36,13 +36,23 @@ def print_results(results, w_or_a, query):
         w_or_a (char): a char value of w or a to denote whether to write to
                 the text file or append to the text file. Only the first query
                 should use w or write.
-        query (str) : a string that denotes what the original query was.
+        query (str): a string that denotes what the original query was.
+        last (bool): boolean value to denote if this is the last query or not.
+                    If it is the last query we need to print errors at the end
+                    of each line and not views.
     '''
-    with open('results.txt', w_or_a) as f:
-        f.write(query + '\n')
-        for r in results:
-            f.write('%s\n' % str(r))
-        f.write('\n')
+    if not last:
+        with open('results.txt', w_or_a) as f:
+            f.write(query + '\n')
+            for r in results:
+                f.write('%s - %s views\n' % (str(r[0]), str(r[1])))
+            f.write('\n')
+    else:
+        with open('results.txt', w_or_a) as f:
+                f.write(query + '\n')
+                for r in results:
+                    f.write('%s - %s errors\n' % (str(r[0]), str(r[1])))
+                f.write('\n')
 
 
 def get_top_articles():
@@ -61,7 +71,7 @@ def get_top_articles():
 
     results = cursor.fetchall()
     query1 = 'Query 1: What are the most popular three articles of all time?'
-    print_results(results, 'w', query1)
+    print_results(results, 'w', query1, False)
     db.close()
 
 
@@ -83,7 +93,7 @@ def get_top_authors():
 
     results = cursor.fetchall()
     query2 = 'Query 2: Who are the most popular article authors of all time?'
-    print_results(results, 'a', query2)
+    print_results(results, 'a', query2, False)
     db.close()
 
 
@@ -111,7 +121,7 @@ def get_top_error_days():
 
     results = cursor.fetchall()
     query3 = 'Query 3: On which days did more than 1% of requests lead to errors?'  # noqa
-    print_results(results, 'a', query3)
+    print_results(results, 'a', query3, True)
     db.close()
 
 # make sure the program is ran directly and not imported
