@@ -63,16 +63,16 @@ def get_top_articles():
     cursor.execute("""
     select title, count(path) as num
     from log, articles
-    where path like '%' || articles.slug || '%' and status = '200 OK'
+    where path = concat('/article/', articles.slug)
     group by title
     order by num desc
     limit 3;
     """)
 
     results = cursor.fetchall()
+    db.close()
     query1 = 'Query 1: What are the most popular three articles of all time?'
     print_results(results, 'w', query1, False)
-    db.close()
 
 
 def get_top_authors():
@@ -84,17 +84,16 @@ def get_top_authors():
     select name, count(path) as num
     from articles, authors, log
     where authors.id = articles.author and
-    path like '%' || articles.slug || '%'
-    and status = '200 OK'
+    path = concat('/article/', articles.slug)
     group by name
     order by count(path) desc
     limit 3;
     """)
 
     results = cursor.fetchall()
+    db.close()
     query2 = 'Query 2: Who are the most popular article authors of all time?'
     print_results(results, 'a', query2, False)
-    db.close()
 
 
 def get_top_error_days():
@@ -120,9 +119,9 @@ def get_top_error_days():
     """)
 
     results = cursor.fetchall()
+    db.close()
     query3 = 'Query 3: On which days did more than 1% of requests lead to errors?'  # noqa
     print_results(results, 'a', query3, True)
-    db.close()
 
 # make sure the program is ran directly and not imported
 if __name__ == '__main__':
